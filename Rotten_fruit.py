@@ -55,30 +55,58 @@ def set_background(path: str):
     with open(path, "rb") as f:
         b64 = base64.b64encode(f.read()).decode()
     st.markdown(
-        f"""
-        <style>
-        .stApp {{
-            background: url(data:image/{ext};base64,{b64});
-            background-size: cover;
-        }}
-        /* simple glass effect cards */
-        .glass {{
-            background: rgba(255,255,255,0.72);
-            border-radius: 16px;
-            padding: 1.0rem 1.25rem;
-            border: 1px solid rgba(255,255,255,0.35);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.18);
-        }}
-        .metric-card {{
-            background: rgba(255,255,255,0.88);
-            border-radius: 14px;
-            padding: .75rem 1rem;
-            border: 1px solid rgba(0,0,0,0.05);
-        }}
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
+    f"""
+    <style>
+    .stApp {{
+        background: url(data:image/{ext};base64,{b64});
+        background-size: cover;
+    }}
+
+    /* Glass effect for cards */
+    .glass {{
+        background: rgba(255,255,255,0.72);
+        border-radius: 16px;
+        padding: 1.0rem 1.25rem;
+        border: 1px solid rgba(255,255,255,0.35);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+    }}
+
+    .metric-card {{
+        background: rgba(255,255,255,0.88);
+        border-radius: 14px;
+        padding: .75rem 1rem;
+        border: 1px solid rgba(0,0,0,0.05);
+    }}
+
+    /* Transparent Sidebar */
+    section[data-testid="stSidebar"] {{
+        background: rgba(255, 255, 255, 0.12) !important;
+        backdrop-filter: blur(12px);
+        border-right: 1px solid rgba(255,255,255,0.25);
+    }}
+
+    /* Remove/transparent top header */
+    header[data-testid="stHeader"] {{
+        background: rgba(0,0,0,0) !important;
+    }}
+
+    /* Make main content container transparent */
+    .block-container {{
+        background: transparent !important;
+    }}
+
+    /* Optional: make tabs container transparent */
+    div[data-baseweb="tab-list"] {{
+        background: rgba(255,255,255,0.20) !important;
+        border-radius: 12px;
+        backdrop-filter: blur(10px);
+        padding: 0.3rem 0.6rem;
+    }}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 
 set_background(BG_PATH)
 
